@@ -5,7 +5,7 @@ on:
   workflow_dispatch:  #### enables us to run workflow without always editing.
  
   push:
-    branches: [ main ]
+    branches: [ Jal ]
     
   
 
