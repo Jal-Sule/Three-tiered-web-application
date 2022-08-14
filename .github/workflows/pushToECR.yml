@@ -1,9 +1,13 @@
 name: Deploy to ECR
 
-on:
+on: 
+
+  workflow_dispatch:  #### enables us to run workflow without always editing.
  
   push:
     branches: [ main ]
+    
+  
 
 jobs:
   
