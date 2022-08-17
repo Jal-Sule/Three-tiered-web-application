@@ -22,7 +22,7 @@ spec:
       containers:
       - name: webapp
         #image: nginx
-        image: 795704689621.dkr.ecr.us-east-1.amazonaws.com/mkg13:latest
+        image: 867152996688.dkr.ecr.us-east-1.amazonaws.com/clo835_repo:V1
         # image: gcr.io/google-samples/gb-frontend:v4
         resources:
           requests:

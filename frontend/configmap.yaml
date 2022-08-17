@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: webapp-config
+    namespace: final
+data:
+    Group_Number: Group13
+    image_url: s3://group13bucket/success.jpg
+    image_name: success.jpg
