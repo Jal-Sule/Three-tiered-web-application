@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: group13-pvc 
+  #serviceAccountName: clo835
+  namespace: final
+  annotations:
+    volume.beta.kubernetes.io/storage-class: gp2
+spec:
+  resources:
+    requests:
+      storage: 2Gi
+  accessModes:
+  - ReadWriteOnce
