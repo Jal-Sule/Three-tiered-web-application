@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: Webpage-image
+data:
+  ImageURL: "https://s3test-jsule.s3.amazonaws.com/1.PNG"
+  #S3Path: https://s3test-jsule.s3.amazonaws.com/folder1/
+  
