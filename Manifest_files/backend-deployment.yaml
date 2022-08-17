@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  namespace: final
+  labels:
+    app.kubernetes.io/name: mysql
+    app.kubernetes.io/component: backend
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mysql
+      app.kubernetes.io/component: backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: mysql
+        app.kubernetes.io/component: backend
+    spec:
+      containers:
+      - name: mysql
+        image: mysql
+        ports:
+        - containerPort: 3306        
+        # image: gcr.io/google-samples/gb-frontend:v4
+        volumeMounts:
+        - name: mysql-volume
+          mountPath: /data/db
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: app-secret
+              key: DB_Password
+
+## removed resources
+      volumes:  # added volume and volume claim
+      - name: mysql-volume
+        persistentVolumeClaim:
+          claimName: group13-pvc
+      serviceAccountName: clo835     # added service account
