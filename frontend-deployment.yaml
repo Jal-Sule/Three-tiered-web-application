@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-dep
+  namespace: final
+  labels:
+    name: webapp
+    #app.kubernetes.io/component: frontend
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: webapp
+      #app.kubernetes.io/component: frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: webapp
+        #app.kubernetes.io/component: frontend
+    spec:
+      serviceAccountName: clo835
+      containers:
+      - name: webapp
+        #image: nginx
+        image: 795704689621.dkr.ecr.us-east-1.amazonaws.com/mkg13:latest
+        # image: gcr.io/google-samples/gb-frontend:v4
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: app-secret-vol
+          mountPath: "/opt/app-secret-vol"
+          readOnly: true
+        envFrom:
+          - configMapRef:
+              name: webapp-config
+          - secretRef:
+              name: app-secret
+      volumes:
+        - name: app-secret-vol
+          secret:
+            secretName: app-secret
+            
+            
+#        env:
+#        - name: Group_Name
+#          valueFrom:
+#            configMapKeyRef:
+#              name: webapp-config
+#              key: Group_Number
+              
+#        - name: s3_Image
+#          valueFrom:
+#            configMapKeyRef:
+#              name: webapp-config
+#              key: Image
